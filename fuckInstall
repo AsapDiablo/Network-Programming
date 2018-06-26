@@ -1,0 +1,11 @@
+cd build 
+make distclean
+cd ../
+aclocal
+autoconf
+automake --add-missing
+autoheader
+libtoolize
+cd build
+../configure
+make
