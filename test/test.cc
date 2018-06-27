@@ -25,6 +25,7 @@ test_suite *init_unit_test_suite(int argc, char *argv[])
     suites->add(new TaskQueueTestSuite());
     suites->add(new DispatcherTestSuite());
     suites->add(new ThreadPoolTestSuite());
+    suites->add(new TimerTestSuite());
 	return suites;
 }
 

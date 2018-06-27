@@ -18,39 +18,24 @@
  *          ======`-.____`-.________/___.-`____.-'======
  *                             `=---='
  *    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *   >  Buddha bless:        Thread.h      NO BUG
+ *   >  Buddha bless:        TimerTest.cc      NO BUG
  *   >        Author:        A$AP Diablo
 
  *   >          Mail:        hyp547450291@qq.com
- *   >  Created Time:        Mon 25 Jun 2018 10:20:24 AM CST
+ *   >  Created Time:        Wed 27 Jun 2018 09:03:02 AM CST
  *    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  **/
  
-#ifndef _THREAD_H
-#define _THREAD_H
-#include <pthread.h>
-#include <functional>
-//#include "ThreadPool.h"
-#include "Data.h"
+#include <boost/test/test_tools.hpp>
+#include <string>
+#include <iostream>
 
-typedef void* (*CallbackFunc)(void*);
-//class ThreadPool;
+#include <Timer.h>
+#include "TimerTest.h"
 
-class Thread 
+void TimerTestCases::testRun()
 {
-public:
-    Thread(){}
-    ~Thread(){}
+    Timer t;
+    BOOST_CHECK(t.fd() > 0);
 
-    unsigned long* tid() { return &tid_; }
-  //  void setPool(ThreadPool* pool){ pool_ = pool; }
-    void assignCallBack(CallbackFunc cb){ cb_ = cb; }
-    CallbackFunc getCallBack() { return cb_; }
-protected:
-    pthread_t tid_;
-    long tcount_; 
-    CallbackFunc cb_;
-  //  ThreadPool* pool_;
-};
-
-#endif
+}

@@ -34,27 +34,62 @@
 #include <mutex>
 #include <condition_variable>
 
-#include "Thread.h"
+//#include "Thread.h"
 #include "Data.h"
 
+void* thread_main(void* arg)
+{  
+    std::unique_lock<std::mutex> LOCK(MUTEX);
+    while(!READY)
+    {
+        printf("thread %ld waiting\n", pthread_self());
+        COND.wait(LOCK);
+    }
+    printf("thread %ld signaling\n", pthread_self());
+    /* execute thread func below*/
+    
+    return NULL;
+}
+typedef void* (*CallbackFunc)(void*);
+//class ThreadPool;
+
+class Thread 
+{
+public:
+    Thread(){}
+    ~Thread(){}
+
+    unsigned long* tid() { return &tid_; }
+  //  void setPool(ThreadPool* pool){ pool_ = pool; }
+    void assignCallBack(CallbackFunc cb){ cb_ = cb; }
+    CallbackFunc getCallBack() { return cb_; }
+protected:
+    pthread_t tid_;
+    long tcount_; 
+    CallbackFunc cb_;
+  //  ThreadPool* pool_;
+};
 
 class ThreadPool
 {
-friend class Thread;
+//friend class Thread;
 public:
     ThreadPool(){}
     ~ThreadPool(){}
 
+     
     void thread_make(int count){
         for(auto i = 0; i < count; i++)
         {
             Thread t;
-            t.setPool(this);
-            pthread_create(t.tid(), NULL, &thread_main, (void*)&count); 
+           // t.setPool(this);
+           
+            t.assignCallBack(thread_main);
+            pthread_create(t.tid(), NULL, t.getCallBack(), (void*)&count); 
             tids_.push_back(*t.tid()); 
         }
     }
-    
+
     bool ready(){ 
         if(tids_.size() > 0)
             return true;
@@ -64,7 +99,7 @@ public:
 
     void start(){
         READY = true;
-        std::unique_lock<std::mutex> LOCK(MUTEX);
+        //std::unique_lock<std::mutex> LOCK(MUTEX);
         COND.notify_all(); 
     }
 

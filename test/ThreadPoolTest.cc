@@ -32,7 +32,6 @@
 
 #include <ThreadPool.h>
 #include "ThreadPoolTest.h"
-#include "Thread.h"
 
 void ThreadPoolTestCases::testInit()
 {

@@ -11,7 +11,7 @@
 
 class BasicFile
 {
-  private:
+  protected:
 	int fd_;
 
   public:

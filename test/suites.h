@@ -17,6 +17,7 @@
 #include "ThreadPoolTest.h"
 #include "DispatcherTest.h"
 #include "SocketTest.h"
+#include "TimerTest.h"
 
 class LogTestSuite : public test_suite
 {
@@ -86,6 +87,16 @@ class ThreadPoolTestSuite : public test_suite
     {
         boost::shared_ptr<ThreadPoolTestCases> instance(new ThreadPoolTestCases());
         add(BOOST_CLASS_TEST_CASE(&ThreadPoolTestCases::testInit, instance));
+    }
+};
+
+class TimerTestSuite : public test_suite 
+{
+  public:
+    TimerTestSuite() : test_suite("TimerTestSuite")
+    {
+        boost::shared_ptr<TimerTestCases> instance(new TimerTestCases());
+        add(BOOST_CLASS_TEST_CASE(&TimerTestCases::testRun, instance));
     }
 };
 #endif // _TEST_SUITES_H_

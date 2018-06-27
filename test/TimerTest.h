@@ -18,39 +18,20 @@
  *          ======`-.____`-.________/___.-`____.-'======
  *                             `=---='
  *    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *   >  Buddha bless:        Thread.h      NO BUG
+ *   >  Buddha bless:        Timer.h      NO BUG
  *   >        Author:        A$AP Diablo
 
  *   >          Mail:        hyp547450291@qq.com
- *   >  Created Time:        Mon 25 Jun 2018 10:20:24 AM CST
+ *   >  Created Time:        Wed 27 Jun 2018 09:02:29 AM CST
  *    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  **/
  
-#ifndef _THREAD_H
-#define _THREAD_H
-#include <pthread.h>
-#include <functional>
-//#include "ThreadPool.h"
-#include "Data.h"
+#ifndef _TIMERTEST_H
+#define _TIMERTEST_H
 
-typedef void* (*CallbackFunc)(void*);
-//class ThreadPool;
-
-class Thread 
+class TimerTestCases
 {
-public:
-    Thread(){}
-    ~Thread(){}
-
-    unsigned long* tid() { return &tid_; }
-  //  void setPool(ThreadPool* pool){ pool_ = pool; }
-    void assignCallBack(CallbackFunc cb){ cb_ = cb; }
-    CallbackFunc getCallBack() { return cb_; }
-protected:
-    pthread_t tid_;
-    long tcount_; 
-    CallbackFunc cb_;
-  //  ThreadPool* pool_;
+    public:
+    void testRun();
 };
-
 #endif

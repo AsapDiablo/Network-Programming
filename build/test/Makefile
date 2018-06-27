@@ -108,7 +108,8 @@ PROGRAMS = $(noinst_PROGRAMS)
 am____bin_test_OBJECTS = test.$(OBJEXT) LogTest.$(OBJEXT) \
 	ExceptionTest.$(OBJEXT) BasicFileTest.$(OBJEXT) \
 	SocketTest.$(OBJEXT) TaskQueueTest.$(OBJEXT) \
-	DispatcherTest.$(OBJEXT) ThreadPoolTest.$(OBJEXT)
+	DispatcherTest.$(OBJEXT) ThreadPoolTest.$(OBJEXT) \
+	TimerTest.$(OBJEXT)
 ___bin_test_OBJECTS = $(am____bin_test_OBJECTS)
 ___bin_test_DEPENDENCIES = ../src/libunp.la
 AM_V_lt = $(am__v_lt_$(V))
@@ -332,9 +333,10 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ../..
 INCLUDES = -I$(top_srcdir)/include -I$(top_srcdir)/src
-include_HEADERS = suites.h LogTest.h ExceptionTest.h TaskQueueTest.h DispatcherTest.h ThreadPoolTest.h
+include_HEADERS = suites.h LogTest.h ExceptionTest.h TaskQueueTest.h DispatcherTest.h ThreadPoolTest.h TimerTest.h
 ___bin_test_SOURCES = test.cc LogTest.cc ExceptionTest.cc \
-	BasicFileTest.cc SocketTest.cc TaskQueueTest.cc DispatcherTest.cc ThreadPoolTest.cc
+	BasicFileTest.cc SocketTest.cc TaskQueueTest.cc DispatcherTest.cc ThreadPoolTest.cc \
+	TimerTest.cc
 
 ___bin_test_LDADD = ../src/libunp.la
 ___bin_test_LDFLAGS = -lboost_unit_test_framework -lpthread
@@ -401,6 +403,7 @@ include ./$(DEPDIR)/LogTest.Po
 include ./$(DEPDIR)/SocketTest.Po
 include ./$(DEPDIR)/TaskQueueTest.Po
 include ./$(DEPDIR)/ThreadPoolTest.Po
+include ./$(DEPDIR)/TimerTest.Po
 include ./$(DEPDIR)/test.Po
 
 .cc.o:

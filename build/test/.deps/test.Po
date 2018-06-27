@@ -876,7 +876,8 @@ test.o: ../../test/test.cc /usr/include/stdc-predef.h \
  /usr/include/boost/swap.hpp ../../test/suites.h ../../test/LogTest.h \
  ../../test/ExceptionTest.h ../../test/BasicFileTest.h \
  ../../test/TaskQueueTest.h ../../test/ThreadPoolTest.h \
- ../../test/DispatcherTest.h ../../test/SocketTest.h
+ ../../test/DispatcherTest.h ../../test/SocketTest.h \
+ ../../test/TimerTest.h
 
 /usr/include/stdc-predef.h:
 
@@ -2873,3 +2874,5 @@ test.o: ../../test/test.cc /usr/include/stdc-predef.h \
 ../../test/DispatcherTest.h:
 
 ../../test/SocketTest.h:
+
+../../test/TimerTest.h:
